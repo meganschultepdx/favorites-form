@@ -6,6 +6,7 @@ $(document).ready(function () {
 
   $("#form-favorite").submit(function (event) {
     event.preventDefault();
+
     favorites_list.push($("#form-favoriteThing").val());
     $("#form-favoriteThing").val("");
 
@@ -15,7 +16,10 @@ $(document).ready(function () {
     if (index > prompts.length - 1)
     {
       $("#questions").fadeOut(function () {
-        $("#favorite-display-list").text(favorites_list.join());
+        favorites_list.forEach(function(favorite) {
+          $("#favorite-display-list").append("<li>" + favorite + "</li>");
+        });
+
         $("#answers").fadeIn();
       });
 
